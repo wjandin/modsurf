@@ -28,16 +28,16 @@ num_n=100;		     % nombre de normales en direction u et en v calcules.
 np = floor(nb/16) % nombre de patches composant la surface
                    % Il faudrait verifier que nb est un multiple de 16 %
 % Matrice B des points de controle
-% for k=1:np
-%   for i=1:4
-%     for j=1:4
-%       B(i,j,1,k) = BezierSurf((i-1)*4+j,1);
-%       B(i,j,2,k) = BezierSurf((i-1)*4+j,2);
-%       B(i,j,3,k) = BezierSurf((i-1)*4+j,3);
-%     end
-%   end
-% end
-% B
+for k=1:np
+  for i=1:4
+    for j=1:4
+      B(i,j,1,k) = BezierSurf((i-1)*4+j,1);
+      B(i,j,2,k) = BezierSurf((i-1)*4+j,2);
+      B(i,j,3,k) = BezierSurf((i-1)*4+j,3);
+    end
+  end
+end
+B
 
 % for k=1:np
 %   for i=1:4
@@ -54,20 +54,20 @@ np = floor(nb/16) % nombre de patches composant la surface
 % % B2 = B(:,:,:,1);
 % save('surface3','BezierSurf','-ascii');
 
-for k=1:2
-  for i=1:4
-    for j=1:4
-      B(i,j,1,k) = ;
-      BezierSurf((i-1)*4+j,1) = B(i,j,1,k);
-      B(i,j,2,k) = j;
-      BezierSurf((i-1)*4+j,2) = B(i,j,2,k);
-      B(i,j,3,k) = exp(-((i-3)*(i-3) + (j-3)*(j-3))/0.4);
-      BezierSurf((i-1)*4+j,3) = B(i,j,3,k);
-    end
-  end
-end
-% B2 = B(:,:,:,1);
-save('surface4','BezierSurf','-ascii');
+% for k=1:2
+%   for i=1:4
+%     for j=1:4
+%       B(i,j,1,k) = ;
+%       BezierSurf((i-1)*4+j,1) = B(i,j,1,k);
+%       B(i,j,2,k) = j;
+%       BezierSurf((i-1)*4+j,2) = B(i,j,2,k);
+%       B(i,j,3,k) = exp(-((i-3)*(i-3) + (j-3)*(j-3))/0.4);
+%       BezierSurf((i-1)*4+j,3) = B(i,j,3,k);
+%     end
+%   end
+% end
+% % B2 = B(:,:,:,1);
+% save('surface4','BezierSurf','-ascii');
 
 % La matrice B stocke tous les points de controle de tous les patchs
 % B(:,:,:,k) sont tous les points de controle du patch k
@@ -95,7 +95,7 @@ end
 % Normal vectors of Cubic Bezier patches 
 u=linspace(0,1,num_n); v=u;  %parametrisation uniforme (num_n+1)x (num_n+1) valeurs de parametre
 for k=1:np
-%    N(:,:,:,k)=bezierPatchNormal(B(:,:,:,k),u,v); %vecteurs normal du patch k
+    N(:,:,:,k)=bezierPatchNormal(B(:,:,:,k),u,v); %vecteurs normal du patch k
 end
 
 
