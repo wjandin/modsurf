@@ -102,7 +102,7 @@ end
 % ------------------------------------
 % Computing Isophotes
 L = [1,1,1];
-c = 0.5;
+c = 10;
 for k=1:np
     I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,B(:,:,:,k)); %vecteurs normaux du patch k
 end
@@ -110,5 +110,5 @@ end
 
 % ------------------------------------
 % Visualisation d'un patch/surface de Bezier
-  plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
-  plotBezierSurface3D(B,S)		   % plot de tous les np patches
+%   plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
+%   plotBezierSurface3D(B,S)		   % plot de tous les np patches

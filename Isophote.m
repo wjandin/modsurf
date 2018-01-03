@@ -7,6 +7,7 @@
 %     taille de N: num_nxnum_nx3
 %  - L dimension des rayons lumineux parallèles
 %  - c valeur constante
+%  - matrix S des valeurs de l'évaluation du patch de Bézier
 
 % Output:
 %  - matrix I avec la grille de |u|x|v| points 3D sur la surface
@@ -16,26 +17,35 @@
 function I = Isophote(N,L,c,S)
 
 I = [];
+[n,m,~] = size(N);
 
-for i = 1:size(N,1)
-    for j = 1:size(N,2)
-        I(i,j) = dot(N(i,j,:),L);
+for i = 1:n
+    for j = 1:m
+        tmp = [N(i,j,1),N(i,j,2),N(i,j,3)];
+%         disp(['taille de N(i,j,:) = ' num2str(size(N(i,j,:)))]);
+%         disp(['taille de L = ' num2str(size(L))]);
+%         disp(['taille de tmp = ' num2str(size(tmp))]);
+        I(i,j) = dot(tmp,L);
     end
 end
         
-res = [];
+res = zeros(n,m,3);
 
-for i = 1:size(N,1)
-    for j = 1:size(N,2)
+for i = 1:n
+    for j = 1:m
         if norm(I(i,j)-c) < 0.001
-            res(i,j) = S(i,j,:);
-        else 
-            res(i,j) = [0,0,0];
+%             res(i,j) = [S(i,j,1),S(i,j,2),S(i,j,3)];
+            res(i,j,:) = S(i,j,:);
         end
     end
 end
 
-plot3(res);
+disp(['taille de res = ' num2str(size(res))]);
+
+x = res(:,:,1);
+y = res(:,:,2);
+z = res(:,:,3);
+plot3(x,y,z);
 
 
 
