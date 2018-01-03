@@ -11,9 +11,9 @@
 %  - v Vecteur de |v|=length(v) valeurs de parametre en v
 
 % Output:
-%  - matrix S avec la grille de |u|x|v| points 3D sur la surface
-%    La structure de S est similaire a celle de B.
-%    Taille de S: |u|x|v|x3
+%  - matrix N avec la grille de |u|x|v| points 3D sur la surface
+%    La structure de N est similaire a celle de B.
+%    Taille de N: |u|x|v|x3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function N = bezierPatchNormal(B,u,v)
 

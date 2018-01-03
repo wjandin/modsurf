@@ -95,14 +95,17 @@ end
 % Normal vectors of Cubic Bezier patches 
 u=linspace(0,1,num_n); v=u;  %parametrisation uniforme (num_n+1)x (num_n+1) valeurs de parametre
 for k=1:np
-    N(:,:,:,k)=bezierPatchNormal(B(:,:,:,k),u,v); %vecteurs normal du patch k
+    N(:,:,:,k)=bezierPatchNormal(B(:,:,:,k),u,v); %vecteurs normaux du patch k
 end
 
 
 % ------------------------------------
 % Computing Isophotes
-  
-
+L = [1,1,1];
+c = 0.5;
+for k=1:np
+    I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,B(:,:,:,k)); %vecteurs normaux du patch k
+end
 
 
 % ------------------------------------
