@@ -19,6 +19,8 @@ function I = Isophote(N,L,c,S)
 I = [];
 [n,m,~] = size(N);
 
+disp(['taille de S = ' num2str(size(S))]);
+
 for i = 1:n
     for j = 1:m
         tmp = [N(i,j,1),N(i,j,2),N(i,j,3)];
@@ -33,7 +35,7 @@ res = zeros(n,m,3);
 
 for i = 1:n
     for j = 1:m
-        if norm(I(i,j)-c) < 0.001
+        if norm(I(i,j)-c) < 0.01
 %             res(i,j) = [S(i,j,1),S(i,j,2),S(i,j,3)];
             res(i,j,:) = S(i,j,:);
         end

@@ -18,7 +18,8 @@ BezierSurf = load('surface1');  % read control points
 %BezierSurf = load('surface4'); % read control points
 %load('teapot'); %loading matrix B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-num_p=20;                    % nombre de valeurs de parametre en direction u et v
+num_p=100;
+% num_p=20;                    % nombre de valeurs de parametre en direction u et v
 			     % plus num_p est grand plus la surface paraitra lisse
 			     % et plus le calcul sera long
 num_n=100;		     % nombre de normales en direction u et en v calcules.
@@ -101,10 +102,10 @@ end
 
 % ------------------------------------
 % Computing Isophotes
-L = [1,1,1];
-c = 10;
+L = [1,0,0];
+c = 0.1;
 for k=1:np
-    I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,B(:,:,:,k)); %vecteurs normaux du patch k
+    I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,S(:,:,:,k)); %vecteurs normaux du patch k
 end
 
 
