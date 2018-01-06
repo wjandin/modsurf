@@ -12,10 +12,10 @@ close all, clear all
 % num_n : nombre de normales calcules (pour le calcul des isophotes)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-BezierSurf = load('surface1');  % read control points
+%BezierSurf = load('surface1');  % read control points
 %BezierSurf = load('surface2'); % read control points
 %BezierSurf = load('surface3'); % read control points
-%BezierSurf = load('surface4'); % read control points
+BezierSurf = load('surface4'); % read control points
 %load('teapot'); %loading matrix B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 num_p=100;
@@ -58,14 +58,43 @@ B
 % for k=1:2
 %   for i=1:4
 %     for j=1:4
-%       B(i,j,1,k) = ;
-%       BezierSurf((i-1)*4+j,1) = B(i,j,1,k);
-%       B(i,j,2,k) = j;
-%       BezierSurf((i-1)*4+j,2) = B(i,j,2,k);
-%       B(i,j,3,k) = exp(-((i-3)*(i-3) + (j-3)*(j-3))/0.4);
-%       BezierSurf((i-1)*4+j,3) = B(i,j,3,k);
+%       if i < 3 && j < 3
+%         B(i,j,1,1) = i;
+%         BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
+%         B(i,j,2,1) = j;
+%         BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
+%         B(i,j,3,1) = exp(-(i+j)/2);
+%         BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
+%       else
+%         B(i,j,1,2) = i;
+%         BezierSurf((i-1)*4+j,1) = B(i,j,1,2);
+%         B(i,j,2,2) = j;
+%         BezierSurf((i-1)*4+j,2) = B(i,j,2,2);
+%         B(i,j,3,2) = exp(-(i+j)/2);
+%         BezierSurf((i-1)*4+j,3) = B(i,j,3,2);
+%       end   
 %     end
 %   end
+% end
+% for i=1:4
+%     for j=1:4
+%         B(i,j,1,1) = i;
+%         BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
+%         B(i,j,2,1) = j;
+%         BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
+%         B(i,j,3,1) = exp(-(i+j)/2);
+%         BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
+%     end
+% end
+% for i=1:4
+%     for j=1:4
+%         B(i,j,1,2) = i+4;
+%         BezierSurf((i-1)*4+j,1) = B(i,j,1,2);
+%         B(i,j,2,2) = j+4;
+%         BezierSurf((i-1)*4+j,2) = B(i,j,2,2);
+%         B(i,j,3,2) = exp(-(i+j)/2);
+%         BezierSurf((i-1)*4+j,3) = B(i,j,3,2);
+%     end
 % end
 % % B2 = B(:,:,:,1);
 % save('surface4','BezierSurf','-ascii');
@@ -102,14 +131,14 @@ end
 
 % ------------------------------------
 % Computing Isophotes
-L = [1,0,0];
-c = 0.1;
-for k=1:np
-    I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,S(:,:,:,k)); %vecteurs normaux du patch k
-end
+% L = [1,0,0];
+% c = 0.1;
+% for k=1:np
+%     I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,S(:,:,:,k)); %vecteurs normaux du patch k
+% end
 
 
 % ------------------------------------
 % Visualisation d'un patch/surface de Bezier
-%   plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
-%   plotBezierSurface3D(B,S)		   % plot de tous les np patches
+  plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
+  %plotBezierSurface3D(B,S)		   % plot de tous les np patches
