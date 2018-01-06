@@ -76,28 +76,28 @@ B
 %     end
 %   end
 % end
-% for i=1:4
-%     for j=1:4
-%         B(i,j,1,1) = i;
-%         BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
-%         B(i,j,2,1) = j;
-%         BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
-%         B(i,j,3,1) = exp(-(i+j)/2);
-%         BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
-%     end
-% end
-% for i=1:4
-%     for j=1:4
-%         B(i,j,1,2) = i+4;
-%         BezierSurf((i-1)*4+j,1) = B(i,j,1,2);
-%         B(i,j,2,2) = j+4;
-%         BezierSurf((i-1)*4+j,2) = B(i,j,2,2);
-%         B(i,j,3,2) = exp(-(i+j)/2);
-%         BezierSurf((i-1)*4+j,3) = B(i,j,3,2);
-%     end
-% end
-% % B2 = B(:,:,:,1);
-% save('surface4','BezierSurf','-ascii');
+for i=1:4
+    for j=1:4
+        B(i,j,1,1) = i;
+        BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
+        B(i,j,2,1) = j;
+        BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
+        B(i,j,3,1) = sin(i-2*j);
+        BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
+    end
+end
+for i=1:4
+    for j=1:4
+        B(i,j,1,2) = i+4;
+        BezierSurf((i-1)*4+j,1) = B(i,j,1,2);
+        B(i,j,2,2) = j;
+        BezierSurf((i-1)*4+j,2) = B(i,j,2,2);
+        B(i,j,3,2) = sin(4+i-2*j);
+        BezierSurf((i-1)*4+j,3) = B(i,j,3,2);
+    end
+end
+% B2 = B(:,:,:,1);
+save('surface4','BezierSurf','-ascii');
 
 % La matrice B stocke tous les points de controle de tous les patchs
 % B(:,:,:,k) sont tous les points de controle du patch k
@@ -140,5 +140,5 @@ end
 
 % ------------------------------------
 % Visualisation d'un patch/surface de Bezier
-  plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
-  %plotBezierSurface3D(B,S)		   % plot de tous les np patches
+  %plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
+  plotBezierSurface3D(B,S)		   % plot de tous les np patches
