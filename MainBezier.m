@@ -18,8 +18,8 @@ close all, clear all
 BezierSurf = load('surface4'); % read control points
 %load('teapot'); %loading matrix B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-num_p=100;
-% num_p=20;                    % nombre de valeurs de parametre en direction u et v
+%num_p=100;
+num_p=20;                    % nombre de valeurs de parametre en direction u et v
 			     % plus num_p est grand plus la surface paraitra lisse
 			     % et plus le calcul sera long
 num_n=100;		     % nombre de normales en direction u et en v calcules.
@@ -27,14 +27,14 @@ num_n=100;		     % nombre de normales en direction u et en v calcules.
 %-------------------------------------------------
 [nb,~] = size(BezierSurf) % nombre de points de controle dans le fichier
 np = floor(nb/16) % nombre de patches composant la surface
-                   % Il faudrait verifier que nb est un multiple de 16 %
+                   % Il faudrait verifier que nb est un multiple de 16
 % Matrice B des points de controle
 for k=1:np
   for i=1:4
     for j=1:4
-      B(i,j,1,k) = BezierSurf((i-1)*4+j,1);
-      B(i,j,2,k) = BezierSurf((i-1)*4+j,2);
-      B(i,j,3,k) = BezierSurf((i-1)*4+j,3);
+      B(i,j,1,k) = BezierSurf((i-1)*4+j+(k-1)*16,1);
+      B(i,j,2,k) = BezierSurf((i-1)*4+j+(k-1)*16,2);
+      B(i,j,3,k) = BezierSurf((i-1)*4+j+(k-1)*16,3);
     end
   end
 end
@@ -76,28 +76,27 @@ B
 %     end
 %   end
 % end
-for i=1:4
-    for j=1:4
-        B(i,j,1,1) = i;
-        BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
-        B(i,j,2,1) = j;
-        BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
-        B(i,j,3,1) = sin(i-2*j);
-        BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
-    end
-end
-for i=1:4
-    for j=1:4
-        B(i,j,1,2) = i+4;
-        BezierSurf((i-1)*4+j,1) = B(i,j,1,2);
-        B(i,j,2,2) = j;
-        BezierSurf((i-1)*4+j,2) = B(i,j,2,2);
-        B(i,j,3,2) = sin(4+i-2*j);
-        BezierSurf((i-1)*4+j,3) = B(i,j,3,2);
-    end
-end
-% B2 = B(:,:,:,1);
-save('surface4','BezierSurf','-ascii');
+% for i=1:4
+%     for j=1:4
+%         B(i,j,1,1) = i;
+%         BezierSurf((i-1)*4+j,1) = B(i,j,1,1);
+%         B(i,j,2,1) = j;
+%         BezierSurf((i-1)*4+j,2) = B(i,j,2,1);
+%         B(i,j,3,1) = sin(i+2*j);
+%         BezierSurf((i-1)*4+j,3) = B(i,j,3,1);
+%     end
+% end
+% for i=1:4
+%     for j=1:4
+%         B(i,j,1,2) = i+3;
+%         BezierSurf((i-1)*4+j+16,1) = B(i,j,1,2);
+%         B(i,j,2,2) = j;
+%         BezierSurf((i-1)*4+j+16,2) = B(i,j,2,2);
+%         B(i,j,3,2) = sin(i+3+2*j);
+%         BezierSurf((i-1)*4+j+16,3) = B(i,j,3,2);
+%     end
+% end
+% save('surface4','BezierSurf','-ascii');
 
 % La matrice B stocke tous les points de controle de tous les patchs
 % B(:,:,:,k) sont tous les points de controle du patch k
