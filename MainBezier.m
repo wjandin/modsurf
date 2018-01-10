@@ -14,8 +14,8 @@ close all, clear all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %BezierSurf = load('surface1');  % read control points
 %BezierSurf = load('surface2'); % read control points
-%BezierSurf = load('surface3'); % read control points
-BezierSurf = load('surface4'); % read control points
+BezierSurf = load('surface3'); % read control points
+%BezierSurf = load('surface4'); % read control points
 %load('teapot'); %loading matrix B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %num_p=100;
@@ -139,5 +139,5 @@ end
 
 % ------------------------------------
 % Visualisation d'un patch/surface de Bezier
-  %plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
+  plotBezierPatch3D(B(:,:,:,k),S(:,:,:,k)) % plot d'un seul patch k
   plotBezierSurface3D(B,S)		   % plot de tous les np patches
