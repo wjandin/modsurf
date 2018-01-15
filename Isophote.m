@@ -5,49 +5,25 @@
 %  - matrix N de num_nxnum_n points de dim 3
 %     chaque point a 3 coordonnees (x,y,z)
 %     taille de N: num_nxnum_nx3
-%  - L dimension des rayons lumineux parallèles
+%  - L dimension des rayons lumineux paralleles
 %  - c valeur constante
-%  - matrix S des valeurs de l'évaluation du patch de Bézier
+%  - matrix S des valeurs de l'evaluation du patch de Bezier
 
 % Output:
 %  - matrix I avec la grille de |u|x|v| points 3D sur la surface
 %    Taille de I: num_nxnum_n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function I = Isophote(N,L,c,S)
+function I = Isophote(N,L)
 
 I = [];
-[n,m,~] = size(N);
-
-disp(['taille de S = ' num2str(size(S))]);
-
+[n,m,~,~] = size(N);
 for i = 1:n
     for j = 1:m
         tmp = [N(i,j,1),N(i,j,2),N(i,j,3)];
-%         disp(['taille de N(i,j,:) = ' num2str(size(N(i,j,:)))]);
-%         disp(['taille de L = ' num2str(size(L))]);
-%         disp(['taille de tmp = ' num2str(size(tmp))]);
-        I(i,j) = dot(tmp,L);
+        I(i,j) = dot(tmp(:),L(:));
     end
 end
-        
-res = zeros(n,m,3);
-
-for i = 1:n
-    for j = 1:m
-        if abs(I(i,j)-c) < 0.01
-%             res(i,j) = [S(i,j,1),S(i,j,2),S(i,j,3)];
-            res(i,j,:) = S(i,j,:);
-        end
-    end
-end
-
-disp(['taille de res = ' num2str(size(res))]);
-
-x = res(:,:,1);
-y = res(:,:,2);
-z = res(:,:,3);
-plot3(x,y,z);
 
 
 

@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Calcul de la deuxième forme fondamentale
+% Calcul de la deuxieme forme fondamentale
 %
 % Input:
 %  - matrix B de 16 points de controle de dim 3
@@ -18,6 +18,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function H = DeuxFormeFond(B,N,u,v)
+
+H = [];
 
 for x = 1:length(u)
     for y = 1:length(v)
@@ -53,9 +55,11 @@ for x = 1:length(u)
         end
         X_uv = X_uv * 9;
 
-        H12 = dot(X_uv,N(x,y,:));
-        H11 = dot(X_uu,N(x,y,:));
-        H22 = dot(X_vv,N(x,y,:));
-        H(x,y,:) = [H11,H12;H12,H22];
+        %disp(['taille de N : ' num2str(size(N(x,y,:)))]);
+        tmp = [N(i,j,1),N(i,j,2),N(i,j,3)];
+        H12 = dot(X_uv,tmp);
+        H11 = dot(X_uu,tmp);
+        H22 = dot(X_vv,tmp);
+        H(x,y,:) = H11 * H22 - H12 * H12;
     end
 end
