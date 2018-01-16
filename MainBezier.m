@@ -131,7 +131,7 @@ end
 % ------------------------------------
 % Computing Isophotes
 % L = [1,0,0];
-% c = 0.1;
+% c = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 % for k=1:np
 %     I(:,:,:,k)=Isophote(N(:,:,:,k),L,c,S(:,:,:,k)); %vecteurs normaux du patch k
 % end

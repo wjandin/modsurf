@@ -33,11 +33,13 @@ end
         
 res = zeros(n,m,3);
 
-for i = 1:n
-    for j = 1:m
-        if abs(I(i,j)-c) < 0.01
+for k = 1:length(c)
+    for i = 1:n
+        for j = 1:m
+            if abs(I(i,j)-c(k)) < 0.01
 %             res(i,j) = [S(i,j,1),S(i,j,2),S(i,j,3)];
-            res(i,j,:) = S(i,j,:);
+                res(k,i,j,:) = S(i,j,:);
+            end
         end
     end
 end
