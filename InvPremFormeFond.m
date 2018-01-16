@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Calcul de l'inverse de la première forme fondamentale
+% Calcul de l'inverse de la premiere forme fondamentale
 %
 % Input:
 %  - matrix B de 16 points de controle de dim 3
@@ -45,6 +45,6 @@ for x = 1:length(u)
         G12 = dot(X_u,X_v);
         G11 = dot(X_u,X_u);
         G22 = dot(X_v,X_v);
-        G(x,y,:) = inv([G11,G12;G12,G22]);
+        G(x,y,:) = G11 * G22 - G12 * G12;
     end
 end
